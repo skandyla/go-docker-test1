@@ -37,5 +37,8 @@ script:
   - curl http://localhost:8080/stats
 
 
-#after_success:
-# deploy artifacts, etc
+after_success:
+  # deploy artifacts, etc
+  - docker tag go-docker-test1 skandyla/go-docker-test1:latest
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push skandyla/go-docker-test1:latest
