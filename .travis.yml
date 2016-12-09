@@ -34,10 +34,10 @@ before_script:
   - docker run -d -p 8080:8080 go-docker-test1
 
 script:
-  - echo "MARK: Launch integration tests"
+  - echo 'MARK: Launch integration tests'
   - curl http://localhost:8080/stats
 
 
 after_success:
 # deploy artifacts, etc
-  - echo "MARK: Deploy artifacts to somewhere"
+  - echo 'MARK: Deploy artifacts to somewhere'
