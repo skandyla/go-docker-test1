@@ -31,7 +31,7 @@ before_script:
   - docker run -d -p 8080:8080 go-docker-test1
 
 script:
-  - curl http://localhost:8080/status
+  - curl http://localhost:8080/stats
 
 
 #after_script:
