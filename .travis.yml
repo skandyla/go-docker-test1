@@ -13,14 +13,17 @@ language: go
 go:
   - 1.7.x
   - master 
-gobuild_args: -a -tags netgo -ldflags '-w'
 
 before_install:
   - go get -v ./...
 
 install:
-  - go build
+  - go build -a -tags netgo -ldflags '-w'
 
-#script:
-# - go test ./...
+script:
+  - ls -l
+  - time docker build -t go-docker-test1 -f Dockerfile .
+  - docker images
+  - docke ps -a
+  - ls -l
 
