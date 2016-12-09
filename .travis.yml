@@ -1,0 +1,24 @@
+sudo: required
+
+services:
+  - docker
+
+env:
+  global:
+    - CGO_ENABLED=0
+    - GOOS=linux
+
+language: go
+go:
+  - 1.7.x
+  - master 
+
+gobuild_args: -a -tags netgo -ldflags '-w'
+install:
+  - go build
+
+#script:
+# - go test ./...
+
+before_install:
+  - docker ps -a
