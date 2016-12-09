@@ -9,19 +9,18 @@ env:
     - GOOS=linux
 
 language: go
+
 go:
   - 1.7.x
   - master 
+gobuild_args: -a -tags netgo -ldflags '-w'
 
-before_script:
+before_install:
   - go get -v ./...
 
-gobuild_args: -a -tags netgo -ldflags '-w'
 install:
   - go build
 
 #script:
 # - go test ./...
 
-before_install:
-  - docker ps -a
