@@ -12,18 +12,18 @@ language: go
 
 go:
   - 1.7.x
-  - master 
+  #- master 
 
 before_install:
   - go get -v ./...
 
 install:
-  - go build -a -tags netgo -ldflags '-w'
+  - go build -v -a -tags netgo -ldflags '-w' .
 
 script:
   - ls -l
   - time docker build -t go-docker-test1 -f Dockerfile .
   - docker images
-  - docke ps -a
+  - docker ps -a
   - ls -l
 
