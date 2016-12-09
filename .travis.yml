@@ -13,6 +13,9 @@ go:
   - 1.7.x
   - master 
 
+before_script:
+  - go get -v ./...
+
 gobuild_args: -a -tags netgo -ldflags '-w'
 install:
   - go build
