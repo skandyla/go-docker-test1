@@ -18,14 +18,21 @@ before_install:
   - go get -v ./...
 
 install:
-  - go build 
-  - go build -a -tags netgo -ldflags '-w' -o main main.go
+  # build our Go application
+  #- go build 
+  - time go build -a -tags netgo -ldflags '-w' -o main main.go
 
-script:
-  - ls -l $HOME/gopath/bin
+before_script:
+  # build Docker image with compiled code, lauch side containers for testings
+  #- ls -l $HOME/gopath/bin
   - ls -l
   - time docker build -t go-docker-test1 -f Dockerfile .
   - docker images
-  - docker ps -a
-  - ls -l
+  - docker run -d -p 8080:8080 go-docker-test1
 
+script:
+  - curl http://localhost:8080/status
+
+
+#after_script:
+# deploy artifacts, etc
