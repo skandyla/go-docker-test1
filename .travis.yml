@@ -3,10 +3,9 @@ sudo: required
 services:
   - docker
 
-#env:
-#  global:
-#    - CGO_ENABLED=0
-#    - GOOS=linux
+env:
+  global:
+    - GOOS=linux
 
 language: go
 
