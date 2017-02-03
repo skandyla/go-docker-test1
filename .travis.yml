@@ -30,6 +30,8 @@ before_script:
   - time docker build -t go-docker-test1 -f Dockerfile_alpine .
   - docker images
   - docker run -d -p 8080:8080 go-docker-test1
+  - docker ps
+  - lsof -nPi|grep 8080
 
 script:
   - curl http://localhost:8080/stats
