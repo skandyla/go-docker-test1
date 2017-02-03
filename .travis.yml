@@ -28,7 +28,7 @@ before_script:
   - docker version
   - sudo pip install docker-compose
   - docker-compose version
-  - time docker build -t go-docker-test1 -f Dockerfile .
+  - time docker build -t go-docker-test1 -f Dockerfile_alpine .
   - docker images
   - docker run -d -p 8080:8080 go-docker-test1
 
