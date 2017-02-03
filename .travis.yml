@@ -5,6 +5,7 @@ services:
 
 env:
   global:
+    - IMAGENAME=go-docker-test1
     - GOOS=linux
 
 language: go
@@ -13,7 +14,7 @@ go:
   - 1.7.x
 
 before_install:
-  - go get -v ./...
+  - go get -v -u ./...
 
 install:
   # build our Go application
@@ -25,13 +26,13 @@ before_script:
   #- ls -l $HOME/gopath/bin
   - ls -l
   - docker version
-  - sudo pip install docker-compose
-  - docker-compose version
-  - time docker build -t go-docker-test1 -f Dockerfile_alpine .
+  #- time docker build -t go-docker-test1 -f Dockerfile_alpine .
+	- time docker build -t $IMAGENAME --build-arg GIT_COMMIT=$TRAVIS_COMMIT --build-arg GIT_BRANCH=$TRAVIS_BRANCH  -f Dockerfile_alpine .
   - docker images
-  - docker run -d -p 8080:8080 go-docker-test1
+  - docker run -p 8080:8080 go-docker-test1 2>&1 /tmp/log
+  - cat /tmp/log
   - docker ps
-  - lsof -nPi|grep 8080
+  #- lsof -nPi|grep 8080
 
 script:
   - curl http://localhost:8080/stats
