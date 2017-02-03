@@ -27,7 +27,6 @@ before_script:
   #- ls -l $HOME/gopath/bin
   #- time docker build -t go-docker-test1 -f Dockerfile_alpine .
   - ls -l
-  - ldd main
   - docker version
   - time docker build -t $IMAGENAME --build-arg GIT_COMMIT=$TRAVIS_COMMIT --build-arg GIT_BRANCH=$TRAVIS_BRANCH  -f Dockerfile_alpine .
   - docker images
